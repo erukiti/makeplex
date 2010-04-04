@@ -7,7 +7,7 @@ class Makeplex
 	def initialize(s)
 		@odai = s
 
-		@hai_num = [].fill(0,1,9)
+		@hai_num = [].fill(0, 1, 9)
 		s.unpack('aaaaaaaaaaaaa').each { |c|
 			@hai_num[c.to_i] += 1
 		}
@@ -45,13 +45,13 @@ class Makeplex
 
 		# シュンツorコーツでの待ちをまず一つ作って、その後は resolv_rec に任せる
 		(1..9).each { |i|
-			# [11]
+			# [11][22][33][44][55][66][77][88][99]
 			resolv_rec(hai_num.clone,  nums - 1, [i, i], "[%s]", result_pair.clone) if hai_num[i] >= 2
 
-			# [12]
+			# [12][23][34][45][56][67][78][89]
 			resolv_rec(hai_num.clone,  nums - 1, [i, i + 1], "[%s]", result_pair.clone) if i <= 8 && hai_num[i] >= 1 && hai_num[i + 1] >= 1
 
-			# [13]
+			# [13][24][35][46][57][68][79]
 			resolv_rec(hai_num.clone,  nums - 1, [i, i + 2], "[%s]", result_pair.clone) if i <= 7 && hai_num[i] >= 1 && hai_num[i + 2] >= 1
 		}
 	end
@@ -82,7 +82,7 @@ class Makeplex
 			#こーつ
 			resolv_rec(hai_num.clone,  nums - 1, [i, i, i], "(%s)", result_pair.clone) if hai_num[i] >= 3
 
-			#こーつ
+			#しゅんつ
 			resolv_rec(hai_num.clone,  nums - 1, [i, i + 1, i + 2], "(%s)", result_pair.clone) if i <= 7 && hai_num[i] >= 1 && hai_num[i + 1] >= 1 && hai_num[i + 2] >= 1
 		}
 
