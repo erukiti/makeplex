@@ -21,6 +21,7 @@ class Makeplex
 			next if @hai_num[i] < 1
 
 			resolv_rec(@hai_num.clone, 4, [i], "[%s]", [])
+			resolv_nico(@hai_num.clone, 4, [i], "[%s]", [])
 		}
 
 		# 頭あり (つまり、メンツを三つと、シュンツorコーツでの待ちを1つ作ろう)
@@ -32,6 +33,30 @@ class Makeplex
 
 		@result.values
 	end
+
+	def resolv_niconico(hai_num, nums, used, fmt, result_pair)
+		used_str = ''
+		used.each { |c|
+			raise "error" if hai_num[c] <= 0
+
+			hai_num[c] -= 1
+			used_str += c.to_s
+		}
+		result_pair.push sprintf(fmt, used_str)
+
+		if nums == 0
+			key = Digest::MD5.digest(result_pair.sort.to_s)
+			@result[key] = result_pair.sort.to_s
+			return
+		end
+
+		# ニコニコ判定
+		(1..9).each { |i|
+			# (11)(22)(33)(44)(55)(66)(77)(88)(99)
+			resolv_niconico(hai_num.clone,  nums - 1, [i, i], "(%s)", result_pair.clone) if hai_num[i] >= 2
+		}
+	end
+
 
 	def resolv_mati(hai_num, nums, used, fmt, result_pair)
 		used_str = ''
