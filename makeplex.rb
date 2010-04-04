@@ -21,7 +21,7 @@ class Makeplex
 			next if @hai_num[i] < 1
 
 			resolv_rec(@hai_num.clone, 4, [i], "[%s]", [])
-			resolv_nico(@hai_num.clone, 4, [i], "[%s]", [])
+			resolv_niconico(@hai_num.clone, 6, [i], "[%s]", [])
 		}
 
 		# 頭あり (つまり、メンツを三つと、シュンツorコーツでの待ちを1つ作ろう)
@@ -122,7 +122,8 @@ class Makeplex
 	end
 end
 
-makeplex = Makeplex.new("1112345678999")
+#makeplex = Makeplex.new("1112345678999")
+makeplex = Makeplex.new("1122334455669")
 result = makeplex.resolv
 makeplex.print_anser
 
