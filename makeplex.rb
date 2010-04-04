@@ -16,14 +16,14 @@ class Makeplex
 	end
 
 	def resolv
-		# Æ¬¤Ê¤· (¤Ä¤Ş¤êÆ¬ = ÂÔ¤Á¡¢¥á¥ó¥Ä¤ò4¤Äºî¤í¤¦)
+		# é ­ãªã— (ã¤ã¾ã‚Šé ­ = å¾…ã¡ã€ãƒ¡ãƒ³ãƒ„ã‚’4ã¤ä½œã‚ã†)
 		(1..9).each { |i|
 			next if @hai_num[i] < 1
 
 			resolv_rec(@hai_num.clone, 4, [i], "[%s]", [])
 		}
 
-		# Æ¬¤¢¤ê (¤Ä¤Ş¤ê¡¢¥á¥ó¥Ä¤ò»°¤Ä¤È¡¢¥·¥å¥ó¥Äor¥³¡¼¥Ä¤Ç¤ÎÂÔ¤Á¤ò1¤Äºî¤í¤¦)
+		# é ­ã‚ã‚Š (ã¤ã¾ã‚Šã€ãƒ¡ãƒ³ãƒ„ã‚’ä¸‰ã¤ã¨ã€ã‚·ãƒ¥ãƒ³ãƒ„orã‚³ãƒ¼ãƒ„ã§ã®å¾…ã¡ã‚’1ã¤ä½œã‚ã†)
 		(1..9).each { |i|
 			next if @hai_num[i] < 2
 
@@ -43,7 +43,7 @@ class Makeplex
 		}
 		result_pair.push sprintf(fmt, used_str)
 
-		# ¥·¥å¥ó¥Äor¥³¡¼¥Ä¤Ç¤ÎÂÔ¤Á¤ò¤Ş¤º°ì¤Äºî¤Ã¤Æ¡¢¤½¤Î¸å¤Ï resolv_rec ¤ËÇ¤¤»¤ë
+		# ã‚·ãƒ¥ãƒ³ãƒ„orã‚³ãƒ¼ãƒ„ã§ã®å¾…ã¡ã‚’ã¾ãšä¸€ã¤ä½œã£ã¦ã€ãã®å¾Œã¯ resolv_rec ã«ä»»ã›ã‚‹
 		(1..9).each { |i|
 			# [11]
 			resolv_rec(hai_num.clone,  nums - 1, [i, i], "[%s]", result_pair.clone) if hai_num[i] >= 2
@@ -79,17 +79,17 @@ class Makeplex
 
 
 		(1..9).each { |i|
-			#¤³¡¼¤Ä
+			#ã“ãƒ¼ã¤
 			resolv_rec(hai_num.clone,  nums - 1, [i, i, i], "(%s)", result_pair.clone) if hai_num[i] >= 3
 
-			#¤³¡¼¤Ä
+			#ã“ãƒ¼ã¤
 			resolv_rec(hai_num.clone,  nums - 1, [i, i + 1, i + 2], "(%s)", result_pair.clone) if i <= 7 && hai_num[i] >= 1 && hai_num[i + 1] >= 1 && hai_num[i + 2] >= 1
 		}
 
 	end
 
 	def print_anser
-		print "#{@odai} ¤Ï #{@result.length} ¸Ä\n";
+		print "#{@odai} ã¯ #{@result.length} å€‹\n";
 
 		@result.each {|key, val|
 			p val
@@ -101,5 +101,5 @@ makeplex = Makeplex.new("1112345678999")
 result = makeplex.resolv
 makeplex.print_anser
 
-# makeplex.resolv ¤Ç¡¢²óÅú¤¬ÇÛÎó¤È¤·¤Æµ¢¤Ã¤Æ¤¯¤ë
+# makeplex.resolv ã§ã€å›ç­”ãŒé…åˆ—ã¨ã—ã¦å¸°ã£ã¦ãã‚‹
 
