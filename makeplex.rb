@@ -122,8 +122,8 @@ class Makeplex
 	end
 end
 
-#makeplex = Makeplex.new("1112345678999")
-makeplex = Makeplex.new("1122334455669")
+makeplex = Makeplex.new("1112345678999")
+#makeplex = Makeplex.new("1122334455669")
 result = makeplex.resolv
 makeplex.print_anser
 
